@@ -1,6 +1,6 @@
 [
   {
-    "user.id": "abcd",
+    "user_id": "abcd", // user_id => userId
     "name": "Kanhaiya Kumar",
     "hashed_password": "12345",
     "ticket_booked": [

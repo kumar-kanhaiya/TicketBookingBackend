@@ -1,0 +1,50 @@
+[
+  {
+    "train_id" : "rajdhani",
+    "train_no" : "243054",
+
+    "seats": [
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0]
+
+    ],
+    "station_time": {
+      "Bangalore" : "13:50:00",
+      "Jaipur": "13:50:00",
+      "Delhi": "13:50:00"
+    },
+
+    "stations": [
+      "Bangalore",
+      "Jaipur",
+      "Delhi"
+    ]
+  },
+  {
+    "train_id" : "VikramShila",
+    "train_no" : "183259",
+
+    "seats": [
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0],
+        [0,0,0,0,0,0]
+
+
+    ],
+    "station_time": {
+      "Patna" : "12:50:00",
+      "Kanpur": "11:50:00",
+      "Anand_Vihar": "16:50:00"
+    },
+
+    "stations": [
+      "Patna",
+      "Kanpur",
+      "Anand Vihar"
+    ]
+  }
+]
