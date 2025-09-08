@@ -1,8 +1,12 @@
 package TicketBooking.IRCTC.Entities;
 
-public class user {
+import java.util.List;
 
-    String name ;
-    String hashedPassword ;
+public class user  {
 
+    private String name ;
+    private String password ;
+    private String HashPassword ;
+    private List<Ticket> ticketBooked;
+    String userId;
 }
