@@ -1,13 +1,13 @@
 package TicketBooking.IRCTC.Services;
 
 import TicketBooking.IRCTC.Entities.User;
+import TicketBooking.IRCTC.util.UserServiceUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,9 +30,13 @@ public class UserBookingService {
     }
 
     public boolean loginUser(){
-        Optional<User> foundUser = userList.stream().filter(user ->{
-            return user.getName().equals(user.getName()) && UserServiceUtil.checkPassword(user.getPassword(),)
-        })
+        Optional<User> foundUser = userList.stream()
+                .filter(user1 -> user1.getName().equals(user.getName()) &&
+                        UserServiceUtil.checkPassword(user.getPassword(), user1.getHashedPassword()))
+                .findFirst();
+
+        return foundUser.isPresent();
+
     }
 
     public boolean signUp(User user){
@@ -44,5 +48,10 @@ public class UserBookingService {
         catch (IOException exception){
             return Boolean.FALSE;
         }
+    }
+
+    private void saveUserListToFile() throws IOException{
+        File usersFile = new File(USERS_PATH);
+        objectMapper.writeValue(usersFile , userList);
     }
 }
