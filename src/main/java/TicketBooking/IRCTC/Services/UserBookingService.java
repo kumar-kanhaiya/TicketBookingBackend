@@ -25,9 +25,18 @@ public class UserBookingService {
 
     public UserBookingService(User user) throws IOException {
         this.user = user;
-        File users = new File(USERS_PATH);
-        userList = objectMapper.readValue(users, new TypeReference<List<User>>(){});
+        loadUser();
 
+    }
+    // default constructor
+    public UserBookingService() throws IOException{
+        loadUser();
+    }
+
+    public List<User> loadUser() throws IOException{
+        File users = new File(USERS_PATH);
+
+        return userList = objectMapper.readValue(users, new TypeReference<List<User>>() {});
     }
 
     public boolean loginUser(){
