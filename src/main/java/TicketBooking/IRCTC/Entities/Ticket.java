@@ -37,7 +37,7 @@ public class Ticket {
         this.userId = userId;
     }
 
-    public String getTicketId() {
+    public  String getTicketId() {
         return ticketId;
     }
 

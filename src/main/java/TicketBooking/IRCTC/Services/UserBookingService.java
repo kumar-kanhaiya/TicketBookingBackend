@@ -1,5 +1,6 @@
 package TicketBooking.IRCTC.Services;
 
+import TicketBooking.IRCTC.Entities.Ticket;
 import TicketBooking.IRCTC.Entities.User;
 import TicketBooking.IRCTC.util.UserServiceUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -54,4 +55,34 @@ public class UserBookingService {
         File usersFile = new File(USERS_PATH);
         objectMapper.writeValue(usersFile , userList);
     }
+
+    // Json -> Object (user) --> DeSerialize
+    // Object (user) -> Json --> Serialize
+
+    public void fetchBooking(){
+        user.printTicket();
+    }
+
+    public boolean cancelBooking(String ticketId) {
+        List<Ticket> tickets = user.getTicketBooked();
+
+        Optional<Ticket> ticketToCancel = tickets.stream()
+                .filter(ticket -> ticket.getTicketId().equals(ticketId))
+                .findFirst();
+
+        if (ticketToCancel.isPresent()) {
+            tickets.remove(ticketToCancel.get());
+
+            try {
+                saveUserListToFile();
+                return true;
+            } catch (IOException e) {
+                return false;
+            }
+        }
+
+        return false;
+    }
+
+
 }
