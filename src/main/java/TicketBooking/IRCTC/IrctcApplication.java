@@ -1,14 +1,13 @@
 package TicketBooking.IRCTC;
 
+import TicketBooking.IRCTC.Entities.User;
 import TicketBooking.IRCTC.Services.UserBookingService;
+import TicketBooking.IRCTC.util.UserServiceUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
@@ -33,7 +32,33 @@ public class IrctcApplication {
         }
 
         while(option != 7){
-            System.out.println("Choice Option :");
+            System.out.println("Choice Option: ");
+            System.out.println("1, Sign Up");
+            System.out.println("2, Login");
+            System.out.println("3, Fetch Booking");
+            System.out.println("4, Search Train");
+            System.out.println("5, Book a Seat");
+            System.out.println("6, Cancel my Booking");
+            System.out.println("7, Exit the App");
+            option = scanner.nextInt();
+            switch (option){
+                case 1:
+                    System.out.println("Enter the username to signup");
+                    String nameToSignUp = scanner.next();
+                    System.out.println("Enter the password to signup");
+                    String passwordToSignUp = scanner.next();
+                    User userToSignUp = new User(nameToSignUp , passwordToSignUp ,
+                            UserServiceUtil.hashPassword(passwordToSignUp) , new ArrayList<>() ,
+                            UUID.randomUUID().toString());
+                    userBookingService.signUp(userToSignUp.getName() , passwordToSignUp);
+                    break;
+
+                case 2:
+                    System.out.println("Enter the username to signIn");
+                    String nameToSignIn = scanner.next();
+
+            }
+
 
         }
 

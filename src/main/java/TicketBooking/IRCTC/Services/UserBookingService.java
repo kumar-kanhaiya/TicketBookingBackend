@@ -49,6 +49,12 @@ public class UserBookingService {
 
     }
 
+    public void SignUp(String name , String password){
+        user.setName(name);
+        user.setHashedPassword(password);
+
+    }
+
     public boolean signUp(User user){
         try{
             userList.add(user);
