@@ -23,6 +23,7 @@ public class IrctcApplication {
         System.out.println("Running Train Booking System");
         Scanner scanner = new Scanner(System.in);
         int option = 0;
+        Train trainSelectedForBooking = null;
         UserBookingService userBookingService ;
         try{
             userBookingService = new UserBookingService();
