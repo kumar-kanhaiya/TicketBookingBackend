@@ -1,5 +1,6 @@
 package TicketBooking.IRCTC;
 
+import TicketBooking.IRCTC.Entities.Train;
 import TicketBooking.IRCTC.Entities.User;
 import TicketBooking.IRCTC.Services.UserBookingService;
 import TicketBooking.IRCTC.util.UserServiceUtil;
@@ -50,12 +51,49 @@ public class IrctcApplication {
                     User userToSignUp = new User(nameToSignUp , passwordToSignUp ,
                             UserServiceUtil.hashPassword(passwordToSignUp) , new ArrayList<>() ,
                             UUID.randomUUID().toString());
-                    userBookingService.signUp(userToSignUp.getName() , passwordToSignUp);
+                    userBookingService.signUp(userToSignUp);
                     break;
 
                 case 2:
                     System.out.println("Enter the username to signIn");
                     String nameToSignIn = scanner.next();
+                    System.out.println("Enter your signIn password");
+                    String passwordToSignIn = scanner.next();
+                    User userToLogin = new User(nameToSignIn , passwordToSignIn ,
+                            UserServiceUtil.hashPassword(passwordToSignIn), new ArrayList<>(),
+                            UUID.randomUUID().toString());
+
+                    try{
+                        userBookingService = new UserBookingService(userToLogin);
+                    }
+                    catch(IOException exception){
+                        return;
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("Fetching your bookings");
+                    userBookingService.fetchBooking();
+                    break;
+
+                case 4 :
+                    System.out.println("Type your source station");
+                    String source = scanner.next();
+                    System.out.println("Type your Destination station");
+                    String dest = scanner.next();
+                    List<Train> trains = userBookingService.getTrain(source , dest);
+                    int index = 1;
+                    for(Train t : trains){
+                        System.out.println(index+ " Train id : " + t.getTrainId());
+                        for(Map.Entry<String , String> entry : t.getStationTime().entrySet()){
+                            System.out.println("Station " + entry.getKey()+" time: " + entry.getValue());
+                        }
+                    }
+                    System.out.println("Select a train by typing 1,2,3....");
+                    trainSelectedForBooking = trains.get(scanner.nextInt());
+                    break;
+
+                case 5 :
 
             }
 

@@ -1,6 +1,7 @@
 package TicketBooking.IRCTC.Services;
 
 import TicketBooking.IRCTC.Entities.Ticket;
+import TicketBooking.IRCTC.Entities.Train;
 import TicketBooking.IRCTC.Entities.User;
 import TicketBooking.IRCTC.util.UserServiceUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -49,11 +50,7 @@ public class UserBookingService {
 
     }
 
-    public void SignUp(String name , String password){
-        user.setName(name);
-        user.setHashedPassword(password);
 
-    }
 
     public boolean signUp(User user){
         try{
@@ -97,6 +94,16 @@ public class UserBookingService {
         }
 
         return false;
+    }
+
+    public List<Train> getTrains(String source , String dest){
+        try{
+            TrainService trainService = new TrainService();
+            return  TrainService.searchTrains(source, dest);
+        }
+        catch(IOException exception){
+            return null;
+        }
     }
 
 
